@@ -10,7 +10,7 @@ namespace FileManagerComandsLib.Comands
     {
         public string ComandInfo()
         {
-            return "Добавить описание";
+            return "Информация о файле";
         }
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
@@ -37,7 +37,7 @@ namespace FileManagerComandsLib.Comands
                $"\n Полный путь: {fileInfo.FullName}";
 
             return str;
-            // Добавить логику
+            
         }
     }
 }

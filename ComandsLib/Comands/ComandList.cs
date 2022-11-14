@@ -9,9 +9,10 @@ namespace FileManagerComandsLib.Comands
 {
     internal class ComandList : IComands
     {
+        string _printList ="";
         public string ComandInfo()
         {
-            return "Добавить описание";
+            return "Список папок и файлов";
         }
         private Dictionary<string, string> _comands = new Dictionary<string, string>()
         {
@@ -28,9 +29,31 @@ namespace FileManagerComandsLib.Comands
         public string Execute(string[] args)
         {
            
-
-                return "";
-                //Добавить логику
+            DirectoryInfo dirInfo = new DirectoryInfo(args[1]);
+            DirectoryInfo[] foldersList = dirInfo.GetDirectories();
+            FileInfo[] filesList = dirInfo.GetFiles();
+            try
+            {
+                if (foldersList.Length > 0) _printList += ("__________Папки__________" + "\n");
+                foreach (DirectoryInfo folder in foldersList)
+                {
+                    string message = folder.Name;
+                    _printList += (message + "\n");
+                }
+                if (filesList.Length > 0) _printList += ("__________Файлы__________" + "\n");
+                foreach (FileInfo file in filesList)
+                {
+                    var message = file.Name;
+                    _printList += (message + "\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+            return _printList;
+                
         }
     }
 }
